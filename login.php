@@ -36,8 +36,8 @@
             $row = mysql_fetch_array($result);
             if ($row) {
                 echo "Logged in successfully";
-                $_SESSION["user"] = $name;
-                $_SESSION["name"] = $name;
+                $_SESSION["user"] = $row["name"];
+                $_SESSION["name"] = $row["name"];
                 $_SESSION["email"] = $email;
                 $_SESSION["id"] = $row["id"];
                 $_SESSION["admin"] = $row["admin"];

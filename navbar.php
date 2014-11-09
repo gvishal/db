@@ -7,10 +7,11 @@
                 echo "<h2><a href='users/index.php'>User Crud</a></h2>";
             }
         }
-        echo "<h2><a href='logout.php'>Logout</a></h2>";
+        echo "<h3><a href='preference.php'>Preference</a></h3>";
+        echo "<h3><a href='logout.php'>Logout</a></h3>";
     }
     else{
-        echo "<h2><a href='login.php'>Login</a></h2>";
-        echo "<h2><a href='register.php'>Register</a></h2> ";
+        echo "<h3><a href='login.php'>Login</a></h3>";
+        echo "<h3><a href='register.php'>Register</a></h3> ";
     }
 ?>
