@@ -10,9 +10,9 @@
 
     echo "Connected to MySQL<br>";
 
-    $selected = mysql_select_db("db_project");
+    $conn = mysql_select_db("db_project");
 
-    if(!$selected){
+    if(!$conn){
         echo "Creating database!<br>";
         $sql = 'CREATE DATABASE db_project';
 
@@ -21,7 +21,7 @@
         else
             echo 'Error creating database: ' . mysql_error() . "\n";
 
-        $selected = mysql_select_db("db_project")
+        $conn = mysql_select_db("db_project")
           or die("Could not select examples");
 
         echo "<br>Connected to db_project<br>";
