@@ -7,7 +7,11 @@
                 echo "<h2><a href='users/index.php'>User Crud</a></h2>";
             }
         }
+        echo "<h4><a href='account.php'>Accounts Linked</a></h4>";
+        echo "<h4><a href='app.php'>Your apps</a></h4>";
+        echo "<h4><a href='device.php'>Devices Open On</a></h4>";
         echo "<h4><a href='preference.php'>Preference</a></h4>";
+        echo "<h4><a href='session.php'>Sessions Active</a></h4>";
         echo "<h4><a href='subscription.php'>Subscription</a></h4>";
         echo "<h4><a href='logout.php'>Logout</a></h4>";
     }

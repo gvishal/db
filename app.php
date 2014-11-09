@@ -13,7 +13,7 @@ if (array_key_exists("logged_in", $_SESSION)) {
 ?>
     <div class="container">
         <div class="row">
-            <h3>Subscription</h3>
+            <h3>Apps Linked</h3>
         </div>
         <div class="row">
             <p>
@@ -22,22 +22,20 @@ if (array_key_exists("logged_in", $_SESSION)) {
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
-                    <th>Type</th>
-                    <th>Space</th>
-                    <th>Started At</th>
-                    <th>Ends At</th>
+                    <th>Name</th>
+                    <th>Date_added</th>
+                    <th>Last_access</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                $sql = "SELECT * FROM SUBSCRIPTION WHERE uid = $id";
+                $sql = "SELECT * FROM APP WHERE uid = $id";
                 $result = mysql_query($sql);
                 while ($row = mysql_fetch_array($result)){
                     echo '<tr>';
-                    echo '<td>'. $row['type'] . '</td>';
-                    echo '<td>'. $row['space'] . 'bytes' . '</td>';
-                    echo '<td>'. $row['started_at'] . '</td>';
-                    echo '<td>'. $row['duration'] . '</td>';
+                    echo '<td>'. $row['name'] . '</td>';
+                    echo '<td>'. $row['date_added'] . '</td>';
+                    echo '<td>'. $row['last_access'] . '</td>';
                     echo '</tr>';
                 }
                 ?>

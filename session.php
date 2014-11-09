@@ -5,15 +5,15 @@ include $_SERVER['DOCUMENT_ROOT']."/project/navbar.php";
 ?>
 
 <?php
-if (array_key_exists("logged_in", $_SESSION)) {
-    $id = $_SESSION["id"];
-}else{
-    header("Location: index.php");
+    if (array_key_exists("logged_in", $_SESSION)) {
+        $id = $_SESSION["id"];
+    }else{
+        header("Location: index.php");
 }
 ?>
     <div class="container">
         <div class="row">
-            <h3>Subscription</h3>
+            <h3>Sessions Active</h3>
         </div>
         <div class="row">
             <p>
@@ -22,22 +22,22 @@ if (array_key_exists("logged_in", $_SESSION)) {
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
-                    <th>Type</th>
-                    <th>Space</th>
-                    <th>Started At</th>
-                    <th>Ends At</th>
+                    <th>IP_Address</th>
+                    <th>Browser</th>
+                    <th>OS</th>
+                    <th>Time</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                $sql = "SELECT * FROM SUBSCRIPTION WHERE uid = $id";
+                $sql = "SELECT * FROM SESSION WHERE uid = $id";
                 $result = mysql_query($sql);
                 while ($row = mysql_fetch_array($result)){
                     echo '<tr>';
-                    echo '<td>'. $row['type'] . '</td>';
-                    echo '<td>'. $row['space'] . 'bytes' . '</td>';
-                    echo '<td>'. $row['started_at'] . '</td>';
-                    echo '<td>'. $row['duration'] . '</td>';
+                    echo '<td>'. $row['ip_address'] . '</td>';
+                    echo '<td>'. $row['browser'] . '</td>';
+                    echo '<td>'. $row['os'] . '</td>';
+                    echo '<td>'. $row['time'] . '</td>';
                     echo '</tr>';
                 }
                 ?>
