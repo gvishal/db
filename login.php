@@ -1,29 +1,22 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT']."/project/connect_db.php";
     include $_SERVER['DOCUMENT_ROOT']."/project/header.php";
+    include $_SERVER['DOCUMENT_ROOT']."/project/navbar.php";
 ?>
+
 <?php
 
-    if ( !empty($_POST)) {
-        // keep track validation errors
-        $nameError = null;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
         $emailError = null;
         $passwordError = null;
 
-        // keep track post values
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $photo = NULL;
+        $email = $_POST["email"];
+        $password = $_POST["password"];
         $hash_password = $password;
 
         // validate input
         $valid = true;
-        if (empty($name)) {
-            $nameError = 'Please enter Name';
-            $valid = false;
-        }
-
         if (empty($email)) {
             $emailError = 'Please enter Email Address';
             $valid = false;
@@ -37,44 +30,42 @@
             $valid = false;
         }
 
-        // insert data
-        if ($valid) {
-            $sql = "INSERT INTO USER (name, email, hash_password, photo)
-                VALUES ('$name', '$email', '$hash_password', '$photo')";
-            if (mysql_query($sql)) {
-                echo "New record created successfully";
+        if($valid){
+            $sql = "SELECT * FROM USER WHERE email = '$email' AND hash_password = '$hash_password'";
+            $result = mysql_query($sql);
+            $row = mysql_fetch_array($result);
+            if ($row) {
+                echo "Logged in successfully";
+                $_SESSION["user"] = $name;
+                $_SESSION["name"] = $name;
+                $_SESSION["email"] = $email;
+                $_SESSION["id"] = $row["id"];
+                $_SESSION["admin"] = $row["admin"];
+                $_SESSION["logged_in"] = 1;
                 header("Location: index.php");
-            } else {
-                $emailError =  'Email exists.Try with a different email.';
+            }
+            else{
+                $emailError =  "Invalid details";
+                $passwordError = " ";
             }
         }
-}
+    }
 ?>
-
     <div class="container">
 
         <div class="span10 offset1">
             <div class="row">
-                <h3>Create a User</h3>
+                <h3>Login</h3>
             </div>
 
-            <form class="form-horizontal" action="create.php" method="post">
-                <div class="control-group <?php echo !empty($nameError)?'error':'';?>">
-                    <label class="control-label">Name</label>
-                    <div class="controls">
-                        <input name="name" type="text"  placeholder="Name" value="<?php echo !empty($name)?$name:'';?>">
-                        <?php if (!empty($nameError)): ?>
-                            <span class="help-inline"><?php echo $nameError;?></span>
-                        <?php endif; ?>
-                    </div>
-                </div>
+            <form class="form-horizontal" action="login.php" method="post">
                 <div class="control-group <?php echo !empty($emailError)?'error':'';?>">
                     <label class="control-label">Email</label>
                     <div class="controls">
-                        <input name="email" type="text" placeholder="Email" value="<?php echo !empty($email)?$email:'';?>">
+                        <input name="email" type="text"  placeholder="Email" value="<?php echo !empty($email)?$email:'';?>">
                         <?php if (!empty($emailError)): ?>
                             <span class="help-inline"><?php echo $emailError;?></span>
-                        <?php endif;?>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="control-group <?php echo !empty($passwordError)?'error':'';?>">
@@ -87,14 +78,13 @@
                     </div>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-success">Create</button>
+                    <button type="submit" class="btn btn-success">Login</button>
                     <a class="btn" href="index.php">Back</a>
                 </div>
             </form>
         </div>
 
     </div> <!-- /container -->
-
 
 <?php
     include $_SERVER['DOCUMENT_ROOT']."/project/footer.php";
