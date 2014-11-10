@@ -34,7 +34,7 @@
 
         if (empty($password)) {
             $passwordError = 'Please enter Password';
-            $valid = false;
+            $valid = false;a
         }
 
         // insert data

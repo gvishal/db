@@ -7,6 +7,7 @@
                 echo "<h2><a href='users/index.php'>User Crud</a></h2>";
             }
         }
+        echo "<h4><a href='home.php'>Home Folder</a></h4>";
         echo "<h4><a href='account.php'>Accounts Linked</a></h4>";
         echo "<h4><a href='app.php'>Your apps</a></h4>";
         echo "<h4><a href='device.php'>Devices Open On</a></h4>";

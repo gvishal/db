@@ -1,3 +1,4 @@
-"ALTER TABLE `USER` ADD PRIMARY KEY(`id`);"
 
-"ALTER TABLE `USER` ADD UNIQUE(`id`);"
+Add all folders in FOLDER and
+ALL files in FILE tables
+irrespective of whether they are in HOMEFODLER
