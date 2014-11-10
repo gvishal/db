@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="201d0ed6-c176-4595-8db5-41fe6e38df89" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/create_version.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/delete_file.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/delete_folder.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/delete_version.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/file.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/folder.php" afterPath="$PROJECT_DIR$/folder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.php" afterPath="$PROJECT_DIR$/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="201d0ed6-c176-4595-8db5-41fe6e38df89" name="Default" comment="" />
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
