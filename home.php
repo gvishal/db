@@ -41,6 +41,12 @@
                         echo '<td>'. '<a href="file.php'.$href.'">' . $row['name'] . '</a>' . '</td>';
                     echo '<td>'. $row['type'] . '</td>';
                     echo '<td>'. $row['last_modified'] . '</td>';
+                    echo '<td width=250>';
+                    if($row["type"] == 'folder')
+                        echo '<a class="btn btn-danger" href="delete_folder.php?id='.$row['id'].'">Delete</a>';
+                    else
+                        echo '<a class="btn btn-danger" href="delete_file.php?id='.$row['id'].'">Delete</a>';
+                    echo '</td>';
                     echo '</tr>';
                 }
                 ?>
@@ -50,5 +56,5 @@
     </div> <!-- /container -->
 
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/project/footer.php";
+    include $_SERVER['DOCUMENT_ROOT']."/project/footer.php";
 ?>
