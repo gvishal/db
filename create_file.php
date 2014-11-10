@@ -1,15 +1,15 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/project/connect_db.php";
-include $_SERVER['DOCUMENT_ROOT']."/project/header.php";
-include $_SERVER['DOCUMENT_ROOT']."/project/navbar.php";
+    include $_SERVER['DOCUMENT_ROOT']."/project/connect_db.php";
+    include $_SERVER['DOCUMENT_ROOT']."/project/header.php";
+    include $_SERVER['DOCUMENT_ROOT']."/project/navbar.php";
 ?>
 
 <?php
-if (array_key_exists("logged_in", $_SESSION)) {
-    $id = $_SESSION["id"];
-}else{
-    header("Location: index.php");
-}
+    if (array_key_exists("logged_in", $_SESSION)) {
+        $id = $_SESSION["id"];
+    }else{
+        header("Location: index.php");
+    }
 ?>
 
 <?php

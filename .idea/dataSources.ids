@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - db_project@localhost" uuid="2584e4e2-bdb1-467e-b832-d41d29d44055">
+    <database-info product="MySQL" version="5.6.20" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="db_project"/>
+    <table name="ACCOUNT" schema="" catalog="db_project" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="provider" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="auth_token" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="ACCOUNT_ibfk_1" columns="uid" ref-table="USER" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="APP" schema="" catalog="db_project" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="date_added" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="last_access" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="APP_ibfk_1" columns="uid" ref-table="USER" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="CONTENT" schema="" catalog="db_project" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="type" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_modified" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="shared_link" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FILE_ibfk_1" table="FILE" schema="" catalog="db_project" columns="id"/>
+      <exported-key name="FOLDER_ibfk_1" table="FOLDER" schema="" catalog="db_project" columns="cid"/>
+      <exported-key name="FOLDER_ibfk_2" table="FOLDER" schema="" catalog="db_project" columns="id"/>
+      <exported-key name="HOMEFOLDER_ibfk_2" table="HOMEFOLDER" schema="" catalog="db_project" columns="cid"/>
+      <index name="name" unique="true" columns="name"/>
+    </table>
+    <table name="DEVICE" schema="" catalog="db_project" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="DEVICE_ibfk_1" columns="uid" ref-table="USER" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="FILE" schema="" catalog="db_project" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FILE_ibfk_1" columns="id" ref-table="CONTENT" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="VERSION_ibfk_1" table="VERSION" schema="" catalog="db_project" columns="fileid"/>
+    </table>
+    <table name="FOLDER" schema="" catalog="db_project" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <foreign-key name="FOLDER_ibfk_1" columns="cid" ref-table="CONTENT" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FOLDER_ibfk_2" columns="id" ref-table="CONTENT" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="HOMEFOLDER" schema="" catalog="db_project" type="TABLE">
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="HOMEFOLDER_ibfk_1" columns="uid" ref-table="USER" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="HOMEFOLDER_ibfk_2" columns="cid" ref-table="CONTENT" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="cid_2" unique="false" columns="cid"/>
+    </table>
+    <table name="PREFERENCE" schema="" catalog="db_project" type="TABLE">
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="alerts" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="newsletter" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="uid"/>
+      <foreign-key name="PREFERENCE_ibfk_1" columns="uid" ref-table="USER" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="uid_2" unique="true" columns="uid"/>
+    </table>
+    <table name="SESSION" schema="" catalog="db_project" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="ip_address" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="browser" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="os" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="SESSION_ibfk_1" columns="uid" ref-table="USER" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="id" unique="true" columns="id"/>
+    </table>
+    <table name="SUBSCRIPTION" schema="" catalog="db_project" type="TABLE">
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="started_at" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="space" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="duration" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="uid"/>
+      <foreign-key name="SUBSCRIPTION_ibfk_1" columns="uid" ref-table="USER" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="uid_2" unique="true" columns="uid"/>
+    </table>
+    <table name="USER" schema="" catalog="db_project" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="admin" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="hash_password" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="photo" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="ACCOUNT_ibfk_1" table="ACCOUNT" schema="" catalog="db_project" columns="uid"/>
+      <exported-key name="APP_ibfk_1" table="APP" schema="" catalog="db_project" columns="uid"/>
+      <exported-key name="DEVICE_ibfk_1" table="DEVICE" schema="" catalog="db_project" columns="uid"/>
+      <exported-key name="HOMEFOLDER_ibfk_1" table="HOMEFOLDER" schema="" catalog="db_project" columns="uid"/>
+      <exported-key name="PREFERENCE_ibfk_1" table="PREFERENCE" schema="" catalog="db_project" columns="uid"/>
+      <exported-key name="SESSION_ibfk_1" table="SESSION" schema="" catalog="db_project" columns="uid"/>
+      <exported-key name="SUBSCRIPTION_ibfk_1" table="SUBSCRIPTION" schema="" catalog="db_project" columns="uid"/>
+      <index name="email" unique="true" columns="email"/>
+      <index name="id" unique="true" columns="id"/>
+    </table>
+    <table name="VERSION" schema="" catalog="db_project" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="fileid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="hash" sqlType="VARCHAR" precision="230" scale="0" nullable="false" jdbcType="12"/>
+      <column name="location" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="size" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="date_modified" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="VERSION_ibfk_1" columns="fileid" ref-table="FILE" ref-schema="" ref-catalog="db_project" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+    </table>
+  </data-source>
+</component>
