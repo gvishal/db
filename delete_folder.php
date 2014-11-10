@@ -18,22 +18,24 @@
 
         // delete data
         //delete all content in current folder
-        $sql = "SELECT * FROM FOLDER WHERE id = $id";
-        $result = mysql_query($sql);
-        while($row = mysql_fetch_array($result)){
-            $cid = $row['cid'];
-            mysql_query("DELETE FROM CONTENT WHERE id = '$cid'");
+        function delete_all($id){
+            $sql = "SELECT * FROM FOLDER WHERE id = $id";
+            $result = mysql_query($sql);
+            while($row = mysql_fetch_array($result)){
+                $cid = $row['cid'];
+                delete_all($cid);
+            }
+            mysql_query("DELETE FROM CONTENT WHERE id = '$id'");
+            if(mysql_query($sql)){
+                echo "Record deleted successfully";
+            }
+            else{
+                echo "Error: " . $sql . "<br>". mysql_error();
+            }
         }
+        delete_all($id);
 
-        $sql = "DELETE FROM CONTENT WHERE id = $id";
-        if(mysql_query($sql)){
-            echo "Record deleted successfully";
-            header("Location: home.php");
-        }
-        else{
-            echo "Error: " . $sql . "<br>". mysql_error($conn);
-        }
-
+        header("Location: home.php");
     }
 ?>
     <div class="container">
