@@ -40,6 +40,11 @@ if ( !empty($_POST)) {
 
     // insert data
     if ($valid) {
+        $result = mysql_query("SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES
+                                      WHERE TABLE_SCHEMA = 'db_project' AND TABLE_NAME = 'USER' ");
+        $uid = mysql_fetch_array($result)["AUTO_INCREMENT"];
+
+        $photo = "images/". $uid . '.jpg';
         $sql = "INSERT INTO USER (name, email, hash_password, photo)
                 VALUES ('$name', '$email', '$hash_password', '$photo')";
         if (mysql_query($sql)) {
@@ -49,7 +54,6 @@ if ( !empty($_POST)) {
             $row = mysql_fetch_array($result);
             if ($row) {
                 $id = $row["id"];
-
                 mysql_query("INSERT INTO ACCOUNT (uid, provider, auth_token)
                               VALUES ('$id', 'facebook', 'dasdad32423asd')");
                 mysql_query("INSERT INTO APP (uid, name, date_added, last_access)

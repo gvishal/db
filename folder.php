@@ -5,20 +5,36 @@
 ?>
 
 <?php
-    if (array_key_exists("logged_in", $_SESSION)) {
-        $id = $_SESSION["id"];
-    }else{
-        header("Location: index.php");
+if (array_key_exists("logged_in", $_SESSION)) {
+    $id = $_SESSION["id"];
+}else{
+    header("Location: index.php");
+}
+?>
+
+<?php
+    $folder_id = null;
+    $folder_name = null;
+    if ( !empty($_GET['id'])) {
+        $folder_id = $_REQUEST['id'];
     }
+    if ( !empty($_GET['name'])) {
+        $folder_name = $_REQUEST['name'];
+    }
+
+    if ( (null == $folder_id) || (null == $folder_name)) {
+        header("Location: home.php");
+    }
+
 ?>
     <div class="container">
         <div class="row">
-            <h3>Home Folder</h3>
+            <h3><?php echo $folder_name ?> Folder</h3>
         </div>
         <div class="row">
             <p>
-                <a href="create_folder.php?target=home" class="btn btn-success">Create Folder</a>
-                <a href="create_file.php?target=home" class="btn btn-primary">Create File</a>
+                <a href="create_folder.php?target=<?php echo $folder_id ?>" class="btn btn-success">Create Folder</a>
+                <a href="create_file.php?target=<?php echo $folder_id ?>" class="btn btn-primary">Create File</a>
             </p>
             <table class="table table-striped table-bordered">
                 <thead>
@@ -30,7 +46,8 @@
                 </thead>
                 <tbody>
                 <?php
-                $sql = "SELECT b.id, b.type, b.name, b.last_modified FROM HOMEFOLDER a, CONTENT b WHERE a.cid = b.id AND a.uid = $id;";
+                $sql = "SELECT b.id, b.type, b.name, b.last_modified FROM FOLDER a, CONTENT b
+                            WHERE a.cid = b.id AND a.id = '$folder_id'";
                 $result = mysql_query($sql);
                 while ($row = mysql_fetch_array($result)){
                     echo '<tr>';
@@ -50,5 +67,5 @@
     </div> <!-- /container -->
 
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/project/footer.php";
+    include $_SERVER['DOCUMENT_ROOT']."/project/footer.php";
 ?>

@@ -19,12 +19,15 @@
         $folderError = null;
 
         $folder = $_POST['folder'];
+        $target = $_POST['target'];
         // validate input
         $valid = true;
         if (empty($folder)) {
             $folderError = 'Please enter folder name';
             $valid = false;
         }
+        if(empty($target))
+            header("Location: index.php");
         // insert data
         if ($valid) {
             $sql = "INSERT INTO CONTENT (type, name)
@@ -34,8 +37,17 @@
                 $row = mysql_fetch_array($result);
                 if($row) {
                     $cid = $row["id"];
-                    mysql_query("INSERT INTO HOMEFOLDER (uid, cid)
-                                  VALUES ('$id', '$cid') " );
+                    if($target == "home") {
+                        mysql_query("INSERT INTO HOMEFOLDER (uid, cid)
+                                  VALUES ('$id', '$cid') ");
+                        $redirect = "Location: home.php";
+                    }
+                    else {
+                        mysql_query("INSERT INTO FOLDER (id, cid)
+                                      VALUES ('$target', '$cid')");
+                        $redirect = "Location: folder.php?id=" .$target ;
+                    }
+
                     mysql_query("INSERT INTO FOLDER (id, cid)
                                   VALUES ('$cid', NULL) " );
                     echo "New record created successfully";
@@ -56,6 +68,7 @@
             </div>
 
             <form class="form-horizontal" action="create_folder.php" method="post">
+                <input type="hidden" name="target" value="<?php echo $_GET['target'] ?>">
                 <div class="control-group <?php echo !empty($folderError)?'error':'';?>">
                     <label class="control-label">folder</label>
                     <div class="controls">
