@@ -7,6 +7,8 @@
 <?php
     if (array_key_exists("logged_in", $_SESSION)) {
         $id = $_SESSION["id"];
+        if(array_key_exists("target", $_GET))
+            $target = $_GET['target'];
     }else{
         header("Location: index.php");
     }
@@ -68,7 +70,7 @@
             </div>
 
             <form class="form-horizontal" action="create_folder.php" method="post">
-                <input type="hidden" name="target" value="<?php echo $_GET['target'] ?>">
+                <input type="hidden" name="target" value="<?php echo $target; ?>">
                 <div class="control-group <?php echo !empty($folderError)?'error':'';?>">
                     <label class="control-label">folder</label>
                     <div class="controls">

@@ -56,16 +56,44 @@ if ( !empty($_POST)) {
                 $id = $row["id"];
                 mysql_query("INSERT INTO ACCOUNT (uid, provider, auth_token)
                               VALUES ('$id', 'facebook', 'dasdad32423asd')");
+                mysql_query("INSERT INTO ACCOUNT (uid, provider, auth_token)
+                              VALUES ('$id', 'twitter', 'asdasd234234asdas')");
+                mysql_query("INSERT INTO ACCOUNT (uid, provider, auth_token)
+                              VALUES ('$id', 'gmail', 'jlkjlnll123123asdas')");
+                mysql_query("INSERT INTO ACCOUNT (uid, provider, auth_token)
+                              VALUES ('$id', 'iiit', 'dadjaslkjl12312lklk')");
+
                 mysql_query("INSERT INTO APP (uid, name, date_added, last_access)
                               VALUES ('$id', 'mycloud', NOW(), NOW())");
+                mysql_query("INSERT INTO APP (uid, name, date_added, last_access)
+                              VALUES ('$id', 'owncloud', NOW(), NOW())");
+                mysql_query("INSERT INTO APP (uid, name, date_added, last_access)
+                              VALUES ('$id', 'yourcloud', NOW(), NOW())");
+                mysql_query("INSERT INTO APP (uid, name, date_added, last_access)
+                              VALUES ('$id', 'iiit', NOW(), NOW())");
+
+
                 mysql_query("INSERT INTO DEVICE (uid, type, name)
                               VALUES ('$id', 'mobile', 'iOS')");
+                mysql_query("INSERT INTO DEVICE (uid, type, name)
+                              VALUES ('$id', 'mobile', 'Android')");
+                mysql_query("INSERT INTO DEVICE (uid, type, name)
+                              VALUES ('$id', 'desktop', 'Ubuntu')");
+
                 mysql_query("INSERT INTO PREFERENCE (uid, alerts, newsletter)
                                 VALUES ($id, '1', '1')");
+
                 mysql_query("INSERT INTO SESSION (uid, time, ip_address, browser, os)
                                 VALUES ('$id', CURRENT_TIME(), '192.168.1.1', 'chrome', 'linux' )");
+                mysql_query("INSERT INTO SESSION (uid, time, ip_address, browser, os)
+                                VALUES ('$id', CURRENT_TIME(), '10.1.40.44', 'firefox', 'linux' )");
+                mysql_query("INSERT INTO SESSION (uid, time, ip_address, browser, os)
+                                VALUES ('$id', CURRENT_TIME(), '14.139.82.6', 'chrome', 'windows' )");
+
+
                 mysql_query("INSERT INTO SUBSCRIPTION (uid, started_at, space, type, duration)
                         VALUES ('$id', CURRENT_DATE(), '10000000', 'free', DATE('2014-12-11')) ");
+
             }
             header("Location: index.php");
         } else {

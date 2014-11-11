@@ -7,6 +7,8 @@
 <?php
     if (array_key_exists("logged_in", $_SESSION)) {
         $id = $_SESSION["id"];
+        if(array_key_exists("target", $_GET))
+            $target = $_GET['target'];
     }else{
         header("Location: index.php");
     }
@@ -81,7 +83,7 @@ if ( !empty($_POST)) {
             </div>
 
             <form class="form-horizontal" action="create_file.php" method="post">
-                <input type="hidden" name="target" value="<?php echo $_GET['target'] ?>">
+                <input type="hidden" name="target" value="<?php echo $target; ?>">
                 <div class="control-group <?php echo !empty($fileError)?'error':'';?>">
                     <label class="control-label">file</label>
                     <div class="controls">
