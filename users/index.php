@@ -1,9 +1,8 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT']."/project/connect_db.php";
     include $_SERVER['DOCUMENT_ROOT']."/project/header.php";
+    include $_SERVER['DOCUMENT_ROOT']."/project/users/navbar.php";
 ?>
-    <h2><a href="../index.php">Welcome to Dropbox</a></h2>
-    <h2><a href='index.php'>User Crud</a></h2>
     <div class="container">
         <div class="row">
             <h3>USER CRUD</h3>
