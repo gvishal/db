@@ -1,23 +1,25 @@
-<h2><a href="index.php">Welcome to Dropbox</a></h2>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="index.php">DB PROJECT</a></li>
 <?php
     if(array_key_exists("logged_in", $_SESSION)) {
-        echo "<h4>Welcome " . $_SESSION["user"] . "</h4>";
+        echo '<li role="presentation"><a href="#">Welcome ' .$_SESSION["user"] . '!</a></li>';
         if (array_key_exists("admin", $_SESSION)) {
             if ($_SESSION["admin"]) {
-                echo "<h2><a href='users/index.php'>User Crud</a></h2>";
+                echo '<li role="presentation"><a href="users/index.php">User Crud</a></li>';
             }
         }
-        echo "<h4><a href='home.php'>Home Folder</a></h4>";
-        echo "<h4><a href='account.php'>Accounts Linked</a></h4>";
-        echo "<h4><a href='app.php'>Your apps</a></h4>";
-        echo "<h4><a href='device.php'>Devices Open On</a></h4>";
-        echo "<h4><a href='preference.php'>Preference</a></h4>";
-        echo "<h4><a href='session.php'>Sessions Active</a></h4>";
-        echo "<h4><a href='subscription.php'>Subscription</a></h4>";
-        echo "<h4><a href='logout.php'>Logout</a></h4>";
+        echo '<li role="presentation"><a href="home.php">Home Folder</a></li>';
+        echo '<li role="presentation"><a href="account.php">Accounts Linked</a></li>';
+        echo '<li role="presentation"><a href="app.php">Your Apps</a></li>';
+        echo '<li role="presentation"><a href="device.php">Devices Open on</a></li>';
+        echo '<li role="presentation"><a href="preference.php">Preferences</a></li>';
+        echo '<li role="presentation"><a href="session.php">Sessions Active</a></li>';
+        echo '<li role="presentation"><a href="subscription.php">Subscription</a></li>';
+        echo '<li role="presentation"><a href="logout.php">Logout</a></li>';
     }
     else{
-        echo "<h4><a href='login.php'>Login</a></h4>";
-        echo "<h4><a href='register.php'>Register</a></h4> ";
+        echo '<li role="presentation"><a href="login.php">Login</a></li>';
+        echo '<li role="presentation"><a href="register.php">Register</a></li>';
     }
 ?>
+    </ul>

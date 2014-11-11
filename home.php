@@ -20,7 +20,7 @@
                 <a href="create_folder.php?target=home" class="btn btn-success">Create Folder</a>
                 <a href="create_file.php?target=home" class="btn btn-primary">Create File</a>
             </p>
-            <table class="table table-striped table-bordered">
+            <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>Name</th>

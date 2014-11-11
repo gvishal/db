@@ -36,7 +36,7 @@ if (array_key_exists("logged_in", $_SESSION)) {
                 <a href="create_folder.php?target=<?php echo $folder_id ?>" class="btn btn-success">Create Folder</a>
                 <a href="create_file.php?target=<?php echo $folder_id ?>" class="btn btn-primary">Create File</a>
             </p>
-            <table class="table table-striped table-bordered">
+            <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -69,6 +69,7 @@ if (array_key_exists("logged_in", $_SESSION)) {
                 ?>
                 </tbody>
             </table>
+            <a class="btn" href="home.php">Back</a>
         </div>
     </div> <!-- /container -->
 

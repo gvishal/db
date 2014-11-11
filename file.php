@@ -35,7 +35,7 @@ include $_SERVER['DOCUMENT_ROOT']."/project/navbar.php";
             <p>
                 <a href="create_version.php?target=<?php echo $file_id ?>" class="btn btn-primary">Add new version</a>
             </p>
-            <table class="table table-striped table-bordered">
+            <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>Hash</th>
@@ -64,6 +64,7 @@ include $_SERVER['DOCUMENT_ROOT']."/project/navbar.php";
                 ?>
                 </tbody>
             </table>
+            <a class="btn" href="home.php">Back</a>
         </div>
     </div> <!-- /container -->
 
