@@ -59,8 +59,12 @@
         }
     }
 ?>
+    <br><br>
     <div class="container">
         <div class="span10 offset1">
+            <div class="row">
+                <h3>Preferences</h3>
+            </div>
             <form class="form-horizontal" action="preference.php" method="post">
                 <input type="hidden" name="id" value="<?php echo !empty($id)?$id:'';?>" >
                 <input type="checkbox" name="alerts" value="1" <?php echo !empty($alerts)?"checked":'';?> >Alerts<br>

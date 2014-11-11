@@ -11,6 +11,36 @@ include $_SERVER['DOCUMENT_ROOT']."/project/navbar.php";
         header("Location: index.php");
 }
 ?>
+<?php
+
+    if ( !empty($_GET)) {
+        $aid = 0;
+        $action = NULL;
+
+        if (!empty($_GET['id'])) {
+            $aid = $_GET['id'];
+        }
+        if (!empty($_GET['action'])) {
+            $action = $_GET['action'];
+        }
+
+        if($action == "delete") {
+            if ($aid && $action) {
+                // delete data
+                $sql = "DELETE FROM SESSION WHERE id = $aid AND uid = $id";
+                if (mysql_query($sql)) {
+                    echo "Record deleted successfully";
+                    header("Location: session.php");
+                } else {
+                    echo "Error: " . $sql . "<br>" . mysql_error($conn);
+                }
+
+            }
+        }
+    }
+?>
+
+
     <div class="container">
         <div class="row">
             <h3>Sessions Active</h3>
@@ -38,6 +68,9 @@ include $_SERVER['DOCUMENT_ROOT']."/project/navbar.php";
                     echo '<td>'. $row['browser'] . '</td>';
                     echo '<td>'. $row['os'] . '</td>';
                     echo '<td>'. $row['time'] . '</td>';
+                    echo '<td width=250>';
+                    echo '<a class="btn btn-danger" href="session.php?action=delete&id='.$row['id'].'">Delete</a>';
+                    echo '</td>';
                     echo '</tr>';
                 }
                 ?>

@@ -31,7 +31,7 @@
             $valid = false;
         }
         if (empty($size)) {
-            $hashError = 'Please enter hash';
+            $sizeError = 'Please enter size';
             $valid = false;
         }
         if(empty($target))
