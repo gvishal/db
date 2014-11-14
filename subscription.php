@@ -16,9 +16,6 @@ if (array_key_exists("logged_in", $_SESSION)) {
             <h3>Subscription</h3>
         </div>
         <div class="row">
-            <p>
-                <a href="#" class="btn btn-success">Create</a>
-            </p>
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>

@@ -32,6 +32,7 @@
 
         if($valid){
             $sql = "SELECT * FROM USER WHERE email = '$email' AND hash_password = '$hash_password'";
+            echo $sql;
             $result = mysql_query($sql);
             $row = mysql_fetch_array($result);
             if ($row) {
